@@ -5,7 +5,10 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
     .config([
         '$stateProvider',
         '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider) {
+        'AuthProvider',
+        function($stateProvider, $urlRouterProvider,AuthProvider) {
+            AuthProvider.logoutPath('users/sign_out.json');
+            AuthProvider.logoutMethod('GET');
 
             $stateProvider
                 .state('home', {
