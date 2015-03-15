@@ -46,13 +46,10 @@ gem 'angular_rails_csrf'
 
 gem "foreman"
 gem 'responders', '~> 2.0'
-gem 'devise'
+gem 'devise', '~> 3.4.0'
 
-group :production, :staging do
-  gem "rails_12factor"
-  gem "rails_stdout_logging"
-  gem "rails_serve_static_assets"
-end
+gem 'rails_12factor', group: :production
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
