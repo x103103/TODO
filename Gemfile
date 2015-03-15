@@ -46,7 +46,7 @@ gem 'angular_rails_csrf'
 
 gem "foreman"
 gem 'responders', '~> 2.0'
-gem 'devise', '~> 3.4.0'
+gem 'devise'
 
 gem 'rails_12factor', group: :production
 

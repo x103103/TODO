@@ -211,7 +211,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
   database_cleaner
-  devise (~> 3.4.0)
+  devise
   factory_girl_rails
   foreman
   jbuilder (~> 2.0)
