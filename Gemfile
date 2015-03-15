@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.2'
+ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -30,7 +30,7 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'puma'
+
 
 group :test, :development do
   gem "rspec-rails"
@@ -49,7 +49,7 @@ gem 'responders', '~> 2.0'
 gem 'devise'
 
 gem 'rails_12factor', group: :production
-
+gem 'puma'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
