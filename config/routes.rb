@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :widgets
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -6,7 +7,19 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'home#index'
+  root to: 'application#angular'
+
+  resources :posts, only: [:create, :index, :show], :defaults => {:format => "json"} do
+    resources :comments, only: [:show, :create], :defaults => {:format => "json"} do
+      member do
+        put '/upvote' => 'comments#upvote'
+      end
+    end
+
+    member do
+      put '/upvote' => 'posts#upvote'
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

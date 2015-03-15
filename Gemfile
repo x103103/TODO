@@ -41,8 +41,13 @@ group :test, :development do
 end
 
 gem 'bower-rails'
+gem 'angular-rails-templates'
+gem 'angular_rails_csrf'
 
 gem "foreman"
+gem 'responders', '~> 2.0'
+gem 'devise'
+
 group :production, :staging do
   gem "rails_12factor"
   gem "rails_stdout_logging"
