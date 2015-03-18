@@ -31,6 +31,16 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
                         }]
                     }
                 })
+                .state('lists', {
+                    url: '/list',
+                    templateUrl: 'lists/_lists.html',
+                    controller: 'ListsCtrl',
+                    resolve: {
+                        postPromise: ['lists', function(lists){
+                            return lists.getAll();
+                        }]
+                    }
+                })
                 .state('login', {
                     url: '/login',
                     templateUrl: 'auth/_login.html',

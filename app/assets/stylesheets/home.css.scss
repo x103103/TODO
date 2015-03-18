@@ -1,3 +1,22 @@
 // Place all the styles related to the home_controller controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.list {
+  button.edit {
+    float: right;
+    margin-right: 5px;
+    color:white;
+  }
+  input.edit {
+    background-color: rgba(48, 160, 186, 0.95);
+    border-width: 0;
+    height: inherit;
+    padding: 0px 10px;
+    line-height: inherit;
+    font-size: inherit;
+  }
+  button.delete {
+    float: right;
+    color:white;
+  }
+}

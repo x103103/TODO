@@ -21,6 +21,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :lists, only: [ :index, :create, :update, :destroy], :defaults => {:format => "json"} do
+    resources :tasks, only: [:create, :destroy], :defaults => {:format => "json"}
+  end
+
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end

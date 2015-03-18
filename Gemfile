@@ -41,12 +41,19 @@ group :test, :development do
 end
 
 gem 'bower-rails'
+
+# angular part
 gem 'angular-rails-templates'
 gem 'angular_rails_csrf'
 
+
 gem "foreman"
-gem 'responders', '~> 2.0'
+
+# Auth
 gem 'devise'
+
+# Provides Sprockets implementation Asset Pipeline.
+gem 'sprockets-rails', :require => 'sprockets/railtie'
 
 gem 'rails_12factor', group: :production
 gem 'puma'
