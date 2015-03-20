@@ -71,7 +71,7 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
 
             $urlRouterProvider.otherwise('login');
         }])
-    .directive('focusOn',function($timeout) {
+    .directive('focusOn',['$timeout',function($timeout) {
         return {
             restrict : 'A',
             link : function($scope,$element,$attr) {
@@ -83,5 +83,5 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
                 });
             }
         }
-    });
+    }]);
 
