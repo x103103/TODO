@@ -2,20 +2,53 @@
     <h1>Flapper News</h1>
 </div>
 
-<div ng-repeat="list in lists | orderBy:'-upvotes'">
+<div ng-repeat="list in lists | orderBy:'id'">
     <div class="panel panel-primary list">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <span class="glyphicon glyphicon-calendar"></span>
                 <span ng-hide="list.edit">{{list.title}}</span>
-                <input ng-show="list.edit" ng-blur="updateList(list)" ng-model="list.title" type="text" class="input-sm edit">
-                <button ng-click="destroyList(list)" class="but btn-link glyphicon glyphicon-trash delete" type="button"></button>
-                <button ng-click="editForm({c:1,list:list})" class="but btn-link glyphicon glyphicon-pencil edit" type="button"></button>
+                <input ng-show="list.edit" focus-on="list.edit"
+                       ng-blur="updateList(list)" ng-model="list.title" type="text" class="input-sm edit">
+                <button ng-click="destroyList(list)" class="but btn-link glyphicon glyphicon-trash delete"
+                        type="button"></button>
+                <button ng-click="editForm({c:1,list:list})" class="but btn-link glyphicon glyphicon-pencil edit"
+                        type="button"></button>
             </h3>
 
         </div>
-        <div class="panel-body">
-            Panel content
+
+        <div class="panel-body task">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </div>
+                    <div class="col-sm-11">
+                        <form ng-submit="addTask(list)">
+                            <div class="input-group">
+                                <input ng-model="list.text" type="text" class="form-control" placeholder="Type this">
+                              <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success">Add Task</button>
+                              </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <table class="table table-bordered table-responsive">
+                        <tbody>
+                            <tr ng-repeat="task in list.tasks">
+                                <td></td><td>{{task.text}}</td><td></td><td></td><td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -28,7 +61,7 @@
         <input type="text"
                class="form-control"
                placeholder="Title"
-               ng-model="title"></input>
+               ng-model="title">
     </div>
     <button type="submit" class="btn btn-primary">Post</button>
 </form>

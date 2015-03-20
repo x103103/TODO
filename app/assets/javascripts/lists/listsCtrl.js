@@ -15,6 +15,7 @@ angular.module('flapperNews')
                 });
                 $scope.title = '';
             };
+
             $scope.destroyList = function(list){
                 lists.destroy(list);
             };
@@ -25,6 +26,17 @@ angular.module('flapperNews')
                 }
             };
             $scope.updateList = function(list){
+                if(!list.edit) {return ;}
                 lists.update(list);
+            };
+
+            $scope.addTask = function(list){
+                if(!list.text || list.text === '') { return; }
+                lists.addTask(list.id, {
+                    text: list.text
+                }).success(function(task) {
+                    delete list.text;
+                    list.tasks.push(task);
+                });
             };
         }]);

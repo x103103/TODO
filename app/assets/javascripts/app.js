@@ -39,7 +39,14 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
                         postPromise: ['lists', function(lists){
                             return lists.getAll();
                         }]
-                    }
+                    },
+                    onEnter: ['$state', 'Auth', function($state, Auth) {
+                        Auth.currentUser().then(function (){
+                            return ;
+                        },function() {
+                            $state.go('login');
+                        });
+                    }]
                 })
                 .state('login', {
                     url: '/login',
@@ -47,7 +54,7 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
                     controller: 'AuthCtrl',
                     onEnter: ['$state', 'Auth', function($state, Auth) {
                         Auth.currentUser().then(function (){
-                            $state.go('home');
+                            $state.go('lists');
                         })
                     }]
                 })
@@ -57,11 +64,24 @@ angular.module('flapperNews', ['ui.router','templates','Devise'])
                     controller: 'AuthCtrl',
                     onEnter: ['$state', 'Auth', function($state, Auth) {
                         Auth.currentUser().then(function (){
-                            $state.go('home');
+                            $state.go('lists');
                         })
                     }]
                 });
 
-            $urlRouterProvider.otherwise('home');
-        }]);
+            $urlRouterProvider.otherwise('login');
+        }])
+    .directive('focusOn',function($timeout) {
+        return {
+            restrict : 'A',
+            link : function($scope,$element,$attr) {
+                $scope.$watch($attr.focusOn,function(_focusVal) {
+                    $timeout(function() {
+                        _focusVal ? $element.focus() :
+                            $element.blur();
+                    });
+                });
+            }
+        }
+    });
 
