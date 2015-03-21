@@ -5,17 +5,25 @@ class TasksController < ApplicationController
   def create
     list = List.find(params[:list_id])
     task = list.tasks.create(task_params)
-    respond_with list, task
+    respond_with task
   end
 
-  def delete
-    list = List.find(params[:list_id])
-    task = list.tasks.find(params[:id])
-    task.delete_all
+  def update
+    task = Task.find(params[:id])
+    task.text = params[:text] if params[:editText] === 1
+    task.done = params[:done] if params[:editDone] === 1
+    task.save
+    respond_with true
+  end
+
+  def destroy
+    task = Task.find(params[:id])
+    task.destroy
+    respond_with true
   end
 
   private
   def task_params
-    params.require(:task).permit(:text, :datetime, :position)
+    params.require(:task).permit(:text, :datetime, :position, :done)
   end
 end

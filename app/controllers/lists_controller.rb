@@ -7,7 +7,7 @@ class ListsController < ApplicationController
   end
 
   def create
-    respond_with List.create(list_params.merge(user_id: current_user.id))
+    respond_with List.create(user_id: current_user.id)
   end
 
   def show
@@ -18,7 +18,7 @@ class ListsController < ApplicationController
     list = List.find(params[:id])
     list.title = params[:title]
     list.save
-    respond_with list
+    respond_with true
   end
 
   def destroy
@@ -27,8 +27,8 @@ class ListsController < ApplicationController
     respond_with true
   end
 
-  private
-  def list_params
-    params.require(:list).permit(:title)
-  end
+  # private
+  # def list_params
+  #   params.require(:list).permit(:title)
+  # end
 end

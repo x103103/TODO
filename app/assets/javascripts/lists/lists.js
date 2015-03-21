@@ -13,31 +13,25 @@ angular.module('flapperNews')
             };
 
             o.getAll = function() {
-                return $http.get('/lists.json').success(function(data){
-                    angular.copy(data, o.lists);
+                return $http.get('/lists.json').success(function(lists){
+                    angular.copy(lists, o.lists);
                 });
             };
 
             o.create = function(list) {
-                return $http.post('/lists.json', list).success(function(data){
-                    o.lists.push(data);
+                return $http.post('/lists.json', list).success(function(list){
+                    o.lists.push(list);
                 });
             };
 
             o.update = function(list) {
-                return $http.patch('/lists/' + list.id, list).success(function(data){
-                    list.edit = 0;
-                });
+                return $http.patch('/lists/' + list.id, list);
             };
 
             o.destroy = function(list) {
                 return $http.delete('/lists/'+ list.id).success(function(){
                     o.lists.splice(o.lists.indexOf(list),1);
                 });
-            };
-
-            o.addTask = function(id, task) {
-                return $http.post('/lists/' + id + '/tasks.json', task);
             };
 
             return o;

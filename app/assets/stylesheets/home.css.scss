@@ -1,52 +1,113 @@
 // Place all the styles related to the home_controller controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.nav.navbar-nav {
+  .name {
+    cursor: default;
+    font-size: 22px;
+    color: #1c1c1c;
+  }
+  .logout {
+    cursor: pointer;
+  }
+}
+
 .list {
-  button.edit {
-    float: right;
-    margin-right: 5px;
-    color:white;
-  }
-  input.edit {
-    background-color: rgba(48, 160, 186, 0.95);
-    border-width: 0;
-    height: inherit;
-    padding: 0px 10px;
-    line-height: inherit;
-    font-size: inherit;
-  }
-  button.delete {
-    float: right;
-    color:white;
-  }
-}
+  .list-title-form {
+    h3 {
+      height: 20px;
+    }
 
-.panel-body.task {
+    span.list-title {
+      padding: 0 10px;
+    }
 
-  padding: 0;
+    button.edit {
+      float: right;
+      margin-right: 5px;
+      color:white;
+    }
+    input.edit {
+      background-color: rgba(48, 160, 186, 0.95);
+      border-width: 0;
+      height: inherit;
+      padding: 0px 10px;
+      line-height: inherit;
+      font-size: inherit;
+    }
 
-  .glyphicon-plus {
-    font-size: 30px;
-    color:#5cb85c;
-  }
-
-  .panel-heading {
-    border-radius: 0;
-    background-color: rgb(241, 246, 247);
-    border-color: lightgray;
+    button.destroy {
+      float: right;
+      color:white;
+    }
   }
 
-  .table {
-    margin: 0;
-  }
+  .tasks {
+
+    padding: 0;
 
 
-  .edit {
-    background-color: rgba(48, 160, 186, 0.95);
-    border-width: 0;
-    height: inherit;
-    padding: 0px 10px;
-    line-height: inherit;
-    font-size: inherit;
-  }
-}
+    .add-task-panel {
+      border-radius: 0;
+      background-color: rgb(241, 246, 247);
+      border-color: lightgray;
+
+      .glyphicon-plus {
+        font-size: 30px;
+        color:#5cb85c;
+      }
+    }
+
+    .table-wrapper{
+      max-height: 200px;
+      overflow: auto;
+    }
+
+    .table {
+      margin: 0;
+      background-color: rgb(252, 255, 207);
+
+      td.done {
+        width: 50px;
+        padding: 3px;
+
+        input {
+          height: 80%;
+          width: 100%;
+        }
+      }
+
+      td.text {
+        position: relative;
+
+        textarea.edit {
+          position: absolute;
+          background-color: rgba(132, 255, 139, 0.42);
+          border-width: 0;
+          height: inherit;
+          padding: 0px 10px;
+          line-height: inherit;
+          font-size: inherit;
+          z-index: 5;
+          border-radius: 0 0 4px 4px;
+          width: 90%;
+          height: 100px;
+        }
+
+        textarea.edit:focus {
+          outline:0px !important;
+          -webkit-appearance:none;
+        }
+      }
+
+      td.edit {
+        width: 50px;
+      }
+
+      td.destroy {
+        width: 50px;
+      }
+    }
+  } /*tasks*/
+}/*list*/

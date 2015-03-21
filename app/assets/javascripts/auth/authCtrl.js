@@ -4,9 +4,10 @@
 angular.module('flapperNews')
     .controller('AuthCtrl', [
         '$scope',
+        '$rootScope',
         '$state',
         'Auth',
-        function($scope, $state, Auth){
+        function($scope,$rootScope, $state, Auth){
             $scope.login = function() {
                 Auth.login($scope.user).then(function(){
                     $state.go('lists');
@@ -18,4 +19,8 @@ angular.module('flapperNews')
                     $state.go('lists');
                 });
             };
+
+            $rootScope.$on('devise:logout', function(event, args) {
+                $state.go('login');
+            });
         }]);
