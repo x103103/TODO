@@ -10,9 +10,22 @@ class TasksController < ApplicationController
 
   def update
     task = Task.find(params[:id])
-    task.text = params[:text] if params[:editText] === 1
-    task.done = params[:done] if params[:editDone] === 1
+    task.text = params[:text]
+    task.done = params[:done]
+    task.datetime = params[:datetime]
     task.save
+    respond_with true
+  end
+
+  def positioning
+    params.permit(positions: [])
+    Task.transaction do
+      params[:positions].each do |t|
+        task = Task.find(t[:id])
+        task.position = t[:position]
+        task.save
+      end
+    end
     respond_with true
   end
 

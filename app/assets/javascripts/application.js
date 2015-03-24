@@ -10,11 +10,16 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+//= require jquery/dist/jquery
+//= require jquery-ui/jquery-ui
+//= require moment/moment
+//= require datejs/build/date
+//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
 //= require angular/angular
 //= require angular-rails-templates
 //= require angular-ui-router/release/angular-ui-router
 //= require angular-devise/lib/devise
-//= require bootstrap-sass-official/assets/javascripts/bootstrap-sprockets
+//= require angular-bootstrap-datetimepicker/src/js/datetimepicker
+//= require angular-ui-sortable/sortable
+//= require tg-dynamic-directive/src/tg.dynamic.directive
 //= require_tree .

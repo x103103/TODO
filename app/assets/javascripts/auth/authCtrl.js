@@ -19,8 +19,4 @@ angular.module('flapperNews')
                     $state.go('lists');
                 });
             };
-
-            $rootScope.$on('devise:logout', function(event, args) {
-                $state.go('login');
-            });
         }]);

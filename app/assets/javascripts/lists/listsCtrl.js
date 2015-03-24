@@ -9,6 +9,46 @@ angular.module('flapperNews')
         function($scope,lists, tasks){
             $scope.lists = lists.lists;
 
+            $scope.positioning = function(){
+                var positions = [];
+                angular.forEach($scope.lists,function(list,k){
+                    var t = list.tasks.length;
+                    angular.forEach(list.tasks,function(task,kk){
+                        if(task.position !== t - kk){
+                            task.position = t - kk;
+                            positions.push({
+                                id: task.id,
+                                position: task.position
+                                });
+                        }
+                    });
+                });
+                tasks.positioning(positions);
+            };
+            $scope.sortableOptions = {
+                connectWith: ".list-group",
+                handle: '.myHandle',
+                stop: function(e, ui) {
+                    // this callback has the changed model
+                    $scope.positioning();
+                }
+            };
+
+
+
+            $scope.getView = function (item) {
+                /*
+                 you can return a different url
+                 to load a different template dynamically
+                 based on the provided item
+                 */
+                if (item) {
+                    //return 'tasks.html';
+                    return 'lists/_tasks.html';
+                }
+                return null;
+            };
+
             $scope.addList = function(){
                 lists.create().success(function(list) {
                     list.edit = 1;
@@ -32,13 +72,20 @@ angular.module('flapperNews')
                 } else {
                     list.edit = 0;
                 }
-            }
+            };
 
 
             $scope.addTask = function(list){
                 if(!list.newTaskText || list.newTaskText === '') { return; }
-                tasks.create(list, {text:list.newTaskText}).success(function() {
+
+                tasks.create(list, {
+                    text:list.newTaskText,
+                    datetime:list.newTaskDatetime,
+                    position:list.tasks.length
+                }).success(function() {
                     delete list.newTaskText;
+                    delete list.newTaskDatetime;
+                    $scope.positioning();
                 });
             };
 
@@ -47,6 +94,11 @@ angular.module('flapperNews')
                 tasks.update(task).success(function() {
                     task.editText = 0;
                     task.editDone = 0;
+                });
+            };
+
+            $scope.onTimeSet = function(newTime,oldTime,task){
+                tasks.update(task).success(function() {
                 });
             };
 
@@ -61,5 +113,14 @@ angular.module('flapperNews')
                 } else {
                     task.editText = 0;
                 }
-            }
+            };
+
+            $scope.taskDatetime = function(datetime){
+                if(!datetime || datetime === '') {return ;}
+                if(typeof datetime === 'string') {
+                    datetime = Date.parse(datetime);
+                }
+
+                return datetime;
+            };
         }]);

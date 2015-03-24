@@ -4,6 +4,11 @@
     "angular": "latest",
     "angular-ui-router": "latest",
     "bootstrap-sass-official": "latest",
-    "angular-devise": "latest"
+    "angular-devise": "latest",
+    "angular-bootstrap-datetimepicker": "latest",
+    "moment": "latest",
+    "datejs": "latest",
+    "angular-ui-sortable": "latest",
+    "tg-dynamic-directive": "git://github.com/thgreasi/tg-dynamic-directive"
   }
 }

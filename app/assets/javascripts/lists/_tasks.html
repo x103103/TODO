@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="row table-wrapper">
+        <ul ui-sortable="sortableOptions" ng-model="list.tasks" class="list-group">
+            <li ng-repeat="task in list.tasks" class="list-group-item">
+                <div class="row">
+                    <div class="done col-xs-1"><input ng-model="task.done" ng-click="task.editDone = 1;updateTask(task);" type="checkbox"></div>
+                    <div class="myHandle col-xs-1"></div>
+                    <div class="text col-xs-6">
+                        <p ng-hide="task.editText">{{task.text.trunc(200,true)}}</p>
+                        <textarea ng-show="task.editText" focus-on="task.editText"
+                                  ng-blur="updateTask(task)" ng-model="task.text" type="text" class="edit"></textarea>
+                    </div>
+                    <div class="time col-xs-2">
+                        <div class="dropdown">
+                            <a ng-hide="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                Time
+                            </a>
+                            <a ng-show="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                {{taskDatetime(task.datetime).toString("d MMM")}}<br>
+                                {{taskDatetime(task.datetime).toString("hh-mm tt")}}
+                            </a>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <datetimepicker data-ng-model="task.datetime"
+                                                data-on-set-time="onTimeSet(newDate, oldDate,task)"
+                                                data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="edit col-xs-1">
+                        <button ng-click="taskEditForm(task)" class="but btn-link glyphicon glyphicon-pencil edit"
+                                type="button"></button>
+                    </div>
+                    <div class="destroy col-xs-1">
+                        <button ng-click="destroyTask(list,task)" class="but btn-link glyphicon glyphicon-trash destroy"
+                                type="button"></button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</div>

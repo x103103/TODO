@@ -13,12 +13,19 @@ angular.module('flapperNews')
 
             o.create = function(list,task) {
                 return $http.post('/lists/' + list.id + '/tasks.json', task).success(function(task){
-                    list.tasks.push(task);
+                    list.tasks.unshift(task);
                 });
             };
 
             o.update = function(task) {
                 return $http.patch('/tasks/' + task.id, task);
+            };
+
+            o.positioning = function(positions) {
+                var data = {
+                    positions:positions
+                };
+                return $http.patch('/tasks/positioning', data);
             };
 
             o.destroy = function(list,task) {

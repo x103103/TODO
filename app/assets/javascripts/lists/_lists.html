@@ -27,6 +27,18 @@
                     <div class="col-sm-11">
                         <form ng-submit="addTask(list)">
                             <div class="input-group">
+                                <span class="input-group-btn dropdown">
+                                    <a ng-if="!list.newTaskDatetime" class="dropdown-toggle btn btn-default time" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                        Time
+                                    </a>
+                                    <a ng-if="list.newTaskDatetime" class="dropdown-toggle btn btn-info" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                        {{list.newTaskDatetime.toString("d MMM hh-mm tt")}}
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                        <datetimepicker data-ng-model="list.newTaskDatetime"
+                                                        data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+                                    </ul>
+                              </span>
                                 <input ng-model="list.newTaskText" type="text" class="form-control" placeholder="Type this">
                               <span class="input-group-btn">
                                 <button type="submit" class="btn btn-success">Add Task</button>
@@ -37,37 +49,62 @@
                 </div>
             </div>
 
-            <div class="container-fluid">
-                <div class="row table-wrapper">
-                    <table class="table table-bordered table-responsive">
-                        <tbody>
-                            <tr ng-repeat="task in list.tasks">
-                                <td class="done"><input ng-model="task.done" ng-click="task.editDone = 1;updateTask(task);" type="checkbox"></td>
-                                <td class="text">
-                                    <span ng-hide="task.editText">{{task.text}}</span>
-                                    <textarea ng-show="task.editText" focus-on="task.editText"
-                                            ng-blur="updateTask(task)" ng-model="task.text" type="text" class="edit"></textarea>
-                                </td>
-                                <td>
+            <!--<div class="container-fluid">-->
+                <!--<div class="row table-wrapper">-->
+                    <!--<table class="table table-bordered table-responsive">-->
+                        <!--<tbody>-->
+                            <!--<tr ng-repeat="task in list.tasks">-->
+                                <!--<td class="done"><input ng-model="task.done" ng-click="task.editDone = 1;updateTask(task);" type="checkbox"></td>-->
+                                <!--<td class="text">-->
+                                    <!--<p ng-hide="task.editText">{{task.text.trunc(200,true)}}</p>-->
+                                    <!--<textarea ng-show="task.editText" focus-on="task.editText"-->
+                                            <!--ng-blur="updateTask(task)" ng-model="task.text" type="text" class="edit"></textarea>-->
+                                <!--</td>-->
+                                <!--<td class="time">-->
+                                    <!--<div class="dropdown">-->
+                                        <!--<a ng-hide="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">-->
+                                            <!--Time-->
+                                        <!--</a>-->
+                                        <!--<a ng-show="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">-->
+                                            <!--{{taskDatetime(task.datetime).toString("d MMM")}}<br>-->
+                                            <!--{{taskDatetime(task.datetime).toString("hh-mm tt")}}-->
+                                        <!--</a>-->
+                                        <!--<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">-->
+                                            <!--<datetimepicker data-ng-model="task.datetime"-->
+                                                            <!--data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
 
-                                </td>
-                                <td class="edit">
-                                    <button ng-click="taskEditForm(task)" class="but btn-link glyphicon glyphicon-pencil edit"
-                                            type="button"></button>
-                                </td>
-                                <td class="destroy">
-                                    <button ng-click="destroyTask(list,task)" class="but btn-link glyphicon glyphicon-trash destroy"
-                                            type="button"></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <!--</td>-->
+                                <!--<td class="edit">-->
+                                    <!--<button ng-click="taskEditForm(task)" class="but btn-link glyphicon glyphicon-pencil edit"-->
+                                            <!--type="button"></button>-->
+                                <!--</td>-->
+                                <!--<td class="destroy">-->
+                                    <!--<button ng-click="destroyTask(list,task)" class="but btn-link glyphicon glyphicon-trash destroy"-->
+                                            <!--type="button"></button>-->
+                                <!--</td>-->
+                            <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
 
-                </div>
-            </div>
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
+
+    <tg-dynamic-directive ng-model="list.tasks" tg-dynamic-directive-view="getView">
+    </tg-dynamic-directive>
+
 </div>
+
+
+<!--<ul ui-sortable="sortableOptions" ng-model="list1" class="list1">-->
+    <!--<li ng-repeat="item in list1" class="item">-->
+        <!--<div class="myHandle"></div>-->
+        <!--{{item.text}}-->
+    <!--</li>-->
+<!--</ul>-->
 
 <form ng-submit="addList()"
       style="margin-top:30px;">
@@ -77,3 +114,48 @@
         </div>
     </div>
 </form>
+
+<script type="text/ng-template" id="tasks.html">
+    <div class="container-fluid">
+        <div class="row table-wrapper">
+            <ul ui-sortable="sortableOptions" ng-model="list.tasks" class="list-group">
+                <li ng-repeat="task in list.tasks" class="list-group-item">
+                    <div class="row">
+                        <div class="done col-xs-1"><input ng-model="task.done" ng-click="task.editDone = 1;updateTask(task);" type="checkbox"></div>
+                        <div ng-click="setCurrentListIndex(list)" class="myHandle col-xs-1"></div>
+                        <div class="text col-xs-6">
+                            <p ng-hide="task.editText">{{task.text.trunc(200,true)}}</p>
+                        <textarea ng-show="task.editText" focus-on="task.editText"
+                                  ng-blur="updateTask(task)" ng-model="task.text" type="text" class="edit"></textarea>
+                        </div>
+                        <div class="time col-xs-2">
+                            <div class="dropdown">
+                                <a ng-hide="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                    Time
+                                </a>
+                                <a ng-show="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
+                                    {{taskDatetime(task.datetime).toString("d MMM")}}<br>
+                                    {{taskDatetime(task.datetime).toString("hh-mm tt")}}
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                    <datetimepicker data-ng-model="task.datetime"
+                                                    data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="edit col-xs-1">
+                            <button ng-click="taskEditForm(task)" class="but btn-link glyphicon glyphicon-pencil edit"
+                                    type="button"></button>
+                        </div>
+                        <div class="destroy col-xs-1">
+                            <button ng-click="destroyTask(list,task)" class="but btn-link glyphicon glyphicon-trash destroy"
+                                    type="button"></button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</script>

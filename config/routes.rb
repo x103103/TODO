@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     resources :tasks, only: [:create], :defaults => {:format => "json"}
   end
 
-  resources :tasks, only: [:update, :destroy], :defaults => {:format => "json"}
+  patch 'tasks/positioning' => 'tasks#positioning', :defaults => {:format => "json"}
+  resources :tasks, only: [:update, :destroy, :positioning], :defaults => {:format => "json"}
 
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'

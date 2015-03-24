@@ -1,7 +1,15 @@
 /**
  * Created by alex on 11.03.15.
  */
-angular.module('flapperNews', ['ui.router','templates','Devise'])
+angular.module('flapperNews',
+    [
+        'ui.router',
+        'templates',
+        'Devise',
+        'ui.bootstrap.datetimepicker',
+        'tg.dynamicDirective',
+        'ui.sortable'
+    ])
     .config([
         '$stateProvider',
         '$urlRouterProvider',

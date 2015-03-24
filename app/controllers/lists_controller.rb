@@ -10,10 +10,6 @@ class ListsController < ApplicationController
     respond_with List.create(user_id: current_user.id)
   end
 
-  def show
-    respond_with List.find(params[:id])
-  end
-
   def update
     list = List.find(params[:id])
     list.title = params[:title]
@@ -26,9 +22,4 @@ class ListsController < ApplicationController
     list.destroy
     respond_with true
   end
-
-  # private
-  # def list_params
-  #   params.require(:list).permit(:title)
-  # end
 end

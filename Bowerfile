@@ -2,4 +2,9 @@ asset 'angular'
 asset 'angular-ui-router'
 asset 'bootstrap-sass-official'
 asset 'angular-devise'
+asset 'angular-bootstrap-datetimepicker'
+asset 'moment'
+asset 'datejs'
+asset 'angular-ui-sortable'
+asset 'tg-dynamic-directive', github: "thgreasi/tg-dynamic-directive"
 # vim: ft=ruby
