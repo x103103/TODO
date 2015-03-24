@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background-color: #eee;
+}
+
 .nav.navbar-nav {
   .name {
     cursor: default;
@@ -13,10 +17,28 @@
   }
 }
 
+.form-signin, .form-register {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+
+  .input-group, input {
+    margin-bottom:10px;
+  }
+}
+
 .list {
+
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0;
+  border-width: 0;
+
   .list-title-form {
+    background: linear-gradient(to top, #676FFF, #4936F1);
+
     h3 {
       height: 20px;
+      color:white;
     }
 
     span.list-title {
@@ -43,114 +65,110 @@
     }
   }
 
-  .tasks {
-
-    padding: 0;
 
 
-    .add-task-panel {
-      border-radius: 0;
-      background-color: rgb(241, 246, 247);
-      border-color: lightgray;
+  padding: 0;
 
-      .glyphicon-plus {
-        font-size: 30px;
-        color:#5cb85c;
-      }
 
-      .time {
-        width: 126px;
-      }
+  .add-task-panel {
+    border-radius: 0;
+    background-color: rgb(241, 246, 247);
+    border-color: lightgray;
+
+    .glyphicon-plus {
+      font-size: 30px;
+      color:#5cb85c;
     }
 
-    .table-wrapper{
-      max-height: 200px;
-      overflow: auto;
+    .time {
+      width: 126px;
     }
+  }
 
-    .table {
-      margin: 0;
-      background-color: rgb(252, 255, 207);
-
-      td.done {
-        width: 50px;
-        padding: 3px;
-
-        input {
-          height: 30px;
-          width: 100%;
-        }
-      }
+  .table-wrapper{
+    max-height: 200px;
+    overflow: auto;
+  }
 
 
-      td.text {
-
-        p {
-          white-space: pre-line;
-        }
-
-        textarea.edit {
-          background-color: rgba(132, 255, 139, 0.42);
-          border-width: 0;
-          min-height: 100px;
-          padding: 0px 10px;
-          line-height: inherit;
-          font-size: inherit;
-          z-index: 5;
-          border-radius: 0 0 4px 4px;
-          width: 90%;
-        }
-
-        textarea.edit:focus {
-          outline:0px !important;
-          -webkit-appearance:none;
-        }
-      }
-
-      td.time {
-        width: 60px;
-        text-align: center;
-        a {
-          white-space: nowrap;
-        }
-
-      }
-
-      td.edit {
-        width: 50px;
-      }
-
-      td.destroy {
-        width: 50px;
-      }
-    }
-  } /*tasks*/
 }/*list*/
 
-.list1 {
-  list-style: none outside none;
-  margin: 10px 0 30px;
-}
+ul.tasks {
 
-.item {
-  width: 200px;
-  padding: 5px 10px;
-  margin: 5px 0;
-  border: 2px solid #444;
-  border-radius: 5px;
-  background-color: #EA8A8A;
+  li{
+    background-color: rgb(252, 255, 207);
 
-  font-size: 1.1em;
-  font-weight: bold;
-  text-align: center;
-  /*cursor: move;*/
-}
+    div.done {
+      width: 50px;
+      padding: 3px;
 
-.myHandle {
-  display: inline-block;
-  height: 20px;
-  width: 20px;
-  vertical-align: middle;
-  background-color: #000;
-  cursor: move;
+      input {
+        height: 30px;
+        width: 100%;
+      }
+    }
+
+    div.handle {
+      font-size: 25px;
+      color: rgb(89, 89, 89);
+      padding-top: 6px;
+      cursor: move;
+    }
+
+
+    div.text {
+
+      p {
+        white-space: pre-line;
+      }
+
+      textarea.edit {
+        background-color: rgba(132, 255, 139, 0.42);
+        border-width: 0;
+        min-height: 100px;
+        padding: 0px 10px;
+        line-height: inherit;
+        font-size: inherit;
+        z-index: 5;
+        border-radius: 0 0 4px 4px;
+        width: 90%;
+      }
+
+      textarea.edit:focus {
+        outline:0px !important;
+        -webkit-appearance:none;
+      }
+    }
+
+    div.time {
+      width: 60px;
+      text-align: center;
+
+      .datetime-dropdown {
+        left: -245px;
+      }
+      a {
+        white-space: nowrap;
+      }
+
+      a:hover,a:focus {
+        text-decoration: none;
+      }
+
+    }
+
+    div.edit {
+      width: 50px;
+      padding-left: 28px;
+    }
+
+    div.destroy {
+      width: 50px;
+    }
+  }
+
+  li:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
 }

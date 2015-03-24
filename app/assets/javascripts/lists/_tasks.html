@@ -1,11 +1,13 @@
 <div class="container-fluid">
     <div class="row table-wrapper">
-        <ul ui-sortable="sortableOptions" ng-model="list.tasks" class="list-group">
+        <ul ui-sortable="sortableOptions" ng-model="list.tasks" class="list-group tasks">
             <li ng-repeat="task in list.tasks" class="list-group-item">
                 <div class="row">
                     <div class="done col-xs-1"><input ng-model="task.done" ng-click="task.editDone = 1;updateTask(task);" type="checkbox"></div>
-                    <div class="myHandle col-xs-1"></div>
-                    <div class="text col-xs-6">
+                    <div class="col-xs-1 handle">
+                        <span class="myHandle glyphicon glyphicon-menu-hamburger"></span>
+                    </div>
+                    <div class="text col-xs-7">
                         <p ng-hide="task.editText">{{task.text.trunc(200,true)}}</p>
                         <textarea ng-show="task.editText" focus-on="task.editText"
                                   ng-blur="updateTask(task)" ng-model="task.text" type="text" class="edit"></textarea>
@@ -17,9 +19,11 @@
                             </a>
                             <a ng-show="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                                 {{taskDatetime(task.datetime).toString("d MMM")}}<br>
-                                {{taskDatetime(task.datetime).toString("hh-mm tt")}}
+                                <span class="label label-warning">
+                                    {{taskDatetime(task.datetime).toString("hh:mm tt")}}
+                                </span>
                             </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <ul class="dropdown-menu datetime-dropdown" role="menu" aria-labelledby="dLabel">
                                 <datetimepicker data-ng-model="task.datetime"
                                                 data-on-set-time="onTimeSet(newDate, oldDate,task)"
                                                 data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle' }"></datetimepicker>
