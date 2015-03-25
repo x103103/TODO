@@ -5,8 +5,12 @@
         <input ng-model="user.email" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
     </div>
     <div class="input-group">
-    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
         <input ng-model="user.password" type="password" class="form-control" placeholder="Password" required="">
+    </div>
+
+    <div class="input-group validationAlerts">
+        <span class="label label-danger" ng-show="loginError">Email or password is incorrect</span>
     </div>
 
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>

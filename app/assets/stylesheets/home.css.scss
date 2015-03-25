@@ -25,13 +25,17 @@ body {
   .input-group, input {
     margin-bottom:10px;
   }
+
+  .validationAlerts .label {
+    display: block;
+  }
 }
 
 .list {
 
   border-radius: 4px 4px 0 0;
   margin-bottom: 0;
-  border-width: 0;
+  border-width: 1px;
 
   .list-title-form {
     background: linear-gradient(to top, #676FFF, #4936F1);
@@ -119,7 +123,7 @@ ul.tasks {
     div.text {
 
       p {
-        white-space: pre-line;
+        white-space: pre-wrap;
       }
 
       textarea.edit {

@@ -18,11 +18,11 @@ class TasksController < ApplicationController
   end
 
   def positioning
-    params.permit(positions: [])
     Task.transaction do
       params[:positions].each do |t|
         task = Task.find(t[:id])
         task.position = t[:position]
+        task.list_id = t[:list_id] if task.list_id != t[:list_id]
         task.save
       end
     end

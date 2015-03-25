@@ -1,18 +1,21 @@
-<form ng-submit="register()" class="form-register" name="register">
+<form ng-submit="register()" name="registerForm" class="form-register">
     <h2>Registration</h2>
-    <input ng-model="user.email" name="uEmail" type="email" class="form-control" placeholder="Email address" required="" autofocus="">
-    <div ng-show="register.$submitted || register.uEmail.$touched">
-        <span ng-show="register.uEmail.$error.required">Tell us your email.</span>
-        <span ng-show="register.uEmail.$error.email">This is not a valid email.</span>
+    <input ng-model="user.email" name="email" type="email" class="form-control" placeholder="Email address" ng-required="true">
+    <input ng-model="user.username" name="username" ng-pattern="/^\S{1,20}$/" type="text"  class="form-control" placeholder="Username"  ng-required="true">
+    <input ng-model="user.password" name="password" ng-pattern="/^\S{5,20}$/" type="password" class="form-control" placeholder="Password" ng-required="true">
+
+    <div class="input-group validationAlerts">
+        <span class="label label-danger" ng-show="submitted && registerForm.email.$error.required">Email is required</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.email.$invalid">Email is invalid</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.username.$error.required">Username is required</span>
+
+        <span class="label label-danger" ng-show="submitted && registerForm.username.$invalid">Username can contain only</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.username.$invalid">letters and numbers (max 20)</span>
+
+        <span class="label label-danger" ng-show="submitted && registerForm.password.$error.required">Password is required</span>
+
+        <span class="label label-danger" ng-show="submitted && registerForm.password.$invalid">Password can contain only letters,</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.password.$invalid">numbers or special characters(min 5)</span>
     </div>
-    <input type="text" name="uName" class="form-control" placeholder="Username" ng-model="user.username" required="">
-    <div ng-show="register.$submitted || register.uName.$touched">
-        <span ng-show="register.uName.$error.required">Tell us your name.</span>
-    </div>
-    <input ng-model="user.password" name="uPassword" min="8" max="20" type="password" class="form-control" placeholder="Password" required="">
-    <div ng-show="register.$submitted || register.uPassword.$touched">
-        <span ng-show="register.uPassword.$error.required">Where is your password?</span>
-        <span ng-show="register.uPassword.$error.min">Min 8 symbols.</span>
-    </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" value="Register">Register</button>
 </form>

@@ -9,6 +9,7 @@
     "moment": "latest",
     "datejs": "latest",
     "angular-ui-sortable": "latest",
-    "tg-dynamic-directive": "git://github.com/thgreasi/tg-dynamic-directive"
+    "tg-dynamic-directive": "git://github.com/thgreasi/tg-dynamic-directive",
+    "angular-validation": "latest"
   }
 }

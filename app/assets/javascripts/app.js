@@ -8,7 +8,7 @@ angular.module('flapperNews',
         'Devise',
         'ui.bootstrap.datetimepicker',
         'tg.dynamicDirective',
-        'ui.sortable'
+        'ui.sortable',
     ])
     .config([
         '$stateProvider',

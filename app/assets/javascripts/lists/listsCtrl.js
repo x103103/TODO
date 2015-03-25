@@ -18,7 +18,8 @@ angular.module('flapperNews')
                             task.position = t - kk;
                             positions.push({
                                 id: task.id,
-                                position: task.position
+                                position: task.position,
+                                list_id: list.id
                                 });
                         }
                     });
@@ -37,13 +38,7 @@ angular.module('flapperNews')
 
 
             $scope.getView = function (item) {
-                /*
-                 you can return a different url
-                 to load a different template dynamically
-                 based on the provided item
-                 */
                 if (item) {
-                    //return 'tasks.html';
                     return 'lists/_tasks.html';
                 }
                 return null;
