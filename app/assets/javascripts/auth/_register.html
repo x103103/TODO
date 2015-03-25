@@ -1,21 +1,28 @@
 <form ng-submit="register()" name="registerForm" class="form-register">
     <h2>Registration</h2>
-    <input ng-model="user.email" name="email" type="email" class="form-control" placeholder="Email address" ng-required="true">
-    <input ng-model="user.username" name="username" ng-pattern="/^\S{1,20}$/" type="text"  class="form-control" placeholder="Username"  ng-required="true">
-    <input ng-model="user.password" name="password" ng-pattern="/^\S{5,20}$/" type="password" class="form-control" placeholder="Password" ng-required="true">
+    <input ng-model="user.email" name="email"
+           pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
+           type="email" class="form-control" placeholder="Email address" ng-required="true">
+    <input ng-model="user.username" name="username"
+           pattern="[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*"
+           type="text"  class="form-control" placeholder="Username"  ng-required="true">
+    <input ng-model="user.password" name="password"
+           pattern="[-a-z0-9!#$%&'*+/=?^_`{|}~]+(\.[-a-z0-9!#$%&'*+/=?^_`{|}~]+)*"
+           ng-minlength="5"
+           type="password" class="form-control" placeholder="Password">
 
     <div class="input-group validationAlerts">
-        <span class="label label-danger" ng-show="submitted && registerForm.email.$error.required">Email is required</span>
-        <span class="label label-danger" ng-show="submitted && registerForm.email.$invalid">Email is invalid</span>
-        <span class="label label-danger" ng-show="submitted && registerForm.username.$error.required">Username is required</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.email.$error.required">Email is required.</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.email.email">Email is invalid.</span>
+
+        <span class="label label-danger" ng-show="submitted && registerForm.username.$error.required">Username is required.</span>
 
         <span class="label label-danger" ng-show="submitted && registerForm.username.$invalid">Username can contain only</span>
-        <span class="label label-danger" ng-show="submitted && registerForm.username.$invalid">letters and numbers (max 20)</span>
-
-        <span class="label label-danger" ng-show="submitted && registerForm.password.$error.required">Password is required</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.username.$invalid">letters and numbers (max 20).</span>
 
         <span class="label label-danger" ng-show="submitted && registerForm.password.$invalid">Password can contain only letters,</span>
-        <span class="label label-danger" ng-show="submitted && registerForm.password.$invalid">numbers or special characters(min 5)</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.password.$invalid">numbers or special characters.</span>
+        <span class="label label-danger" ng-show="submitted && registerForm.password.$error.minlength">Password must be 5 characters including.</span>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit" value="Register">Register</button>
 </form>

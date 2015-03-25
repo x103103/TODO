@@ -7,12 +7,12 @@
                     <div class="col-xs-1 handle">
                         <span class="myHandle glyphicon glyphicon-menu-hamburger"></span>
                     </div>
-                    <div class="text col-xs-7">
+                    <div class="text col-xs-6">
                         <p ng-hide="task.editText || task.shortTextOn" >{{task.text.trunc(200,true)}}</p>
                         <div ng-if="task.text.length>200">
-                            <a ng-click="task.shortTextOn=!task.shortTextOn" ng-show="task.editText || !task.shortTextOn" href="" class="glyphicon glyphicon-chevron-down"></a>
+                            <a ng-click="task.shortTextOn=!task.shortTextOn" ng-hide="task.editText || task.shortTextOn" href="" class="glyphicon glyphicon-chevron-down"></a>
                             <p ng-hide="task.editText || !task.shortTextOn">{{task.text}}</p>
-                            <a ng-click="task.shortTextOn=!task.shortTextOn" ng-show="task.editText || task.shortTextOn" href="" class="glyphicon glyphicon-chevron-up"></a>
+                            <a ng-click="task.shortTextOn=!task.shortTextOn" ng-hide="task.editText || !task.shortTextOn" href="" class="glyphicon glyphicon-chevron-up"></a>
                         </div>
 
                         <textarea ng-show="task.editText" focus-on="task.editText"
@@ -20,8 +20,7 @@
                     </div>
                     <div class="time col-xs-2">
                         <div class="dropdown">
-                            <a ng-hide="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
-                                Time
+                            <a ng-hide="task.datetime" class="dropdown-toggle glyphicon glyphicon-time" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                             </a>
                             <a ng-show="task.datetime" class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="">
                                 {{taskDatetime(task.datetime).toString("d MMM")}}<br>
