@@ -8,7 +8,13 @@
                         <span class="myHandle glyphicon glyphicon-menu-hamburger"></span>
                     </div>
                     <div class="text col-xs-7">
-                        <p ng-hide="task.editText">{{task.text.trunc(200,true)}}</p>
+                        <p ng-hide="task.editText || task.shortTextOn" >{{task.text.trunc(200,true)}}</p>
+                        <div ng-if="task.text.length>200">
+                            <a ng-click="task.shortTextOn=!task.shortTextOn" ng-show="task.editText || !task.shortTextOn" href="" class="glyphicon glyphicon-chevron-down"></a>
+                            <p ng-hide="task.editText || !task.shortTextOn">{{task.text}}</p>
+                            <a ng-click="task.shortTextOn=!task.shortTextOn" ng-show="task.editText || task.shortTextOn" href="" class="glyphicon glyphicon-chevron-up"></a>
+                        </div>
+
                         <textarea ng-show="task.editText" focus-on="task.editText"
                                   ng-blur="updateTask(task)" ng-model="task.text" type="text" class="edit"></textarea>
                     </div>
