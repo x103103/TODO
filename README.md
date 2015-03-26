@@ -4,7 +4,7 @@ This project lets you organize your everyday tasks. You can create various TODO 
 
 ## Made on:
 
-* Rails - back-end framework
+* Ruby on Rails - back-end framework
 * PostgresQL - database
 * AngularJS - frond-end framework
 * Twitter Bootstrap  - CSS
